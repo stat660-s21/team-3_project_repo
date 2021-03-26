@@ -22,7 +22,7 @@ unique id column “OSHPD_ID” in ltcfutil15.
 */
 %let inputDataset1DSN = ltcfstaffing15;
 %let inputDataset1URL =
-https://github.com/stat660/team-3_project_repo/blob/sl-week2/data/ltcfstaffing15.xlsx
+https://github.com/stat660/team-3_project_repo/blob/sl-week2/data/ltcfstaffing15.xlsx?raw=true
 ;
 %let inputDataset1Type = XLSX;
 
@@ -43,7 +43,7 @@ column “OSHPD_ID” in ltcfutil15.
 */
 %let inputDataset2DSN = ltcfprofitability15;
 %let inputDataset2URL =
-https://github.com/stat660/team-3_project_repo/blob/sl-week2/data/ltcfprofitability15.xlsx
+https://github.com/stat660/team-3_project_repo/blob/sl-week2/data/ltcfprofitability15.xlsx?raw=true
 ;
 %let inputDataset2Type = XLSX;
 
@@ -65,7 +65,7 @@ resource/65ad64d6-5092-43b5-bd7c-c5734601b17f/download/ltcfrm15.pdf
 */
 %let inputDataset3DSN = ltcfutil15;
 %let inputDataset3URL =
-https://github.com/stat660/team-3_project_repo/blob/sl-week2/data/ltcfutil15.xlsx
+https://github.com/stat660/team-3_project_repo/blob/sl-week2/data/ltcfutil15.xlsx?raw=true
 ;
 %let inputDataset3Type = XLSX;
 
