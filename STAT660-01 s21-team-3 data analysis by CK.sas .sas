@@ -1,28 +1,4 @@
-NOTE: Copyright (c) 2016 by SAS Institute Inc., Cary, NC, USA.
-NOTE: SAS (r) Proprietary Software 9.4 (TS1M5)
-      Licensed to CALIFORNIA STATE UNIVERSITY EAST BAY - SFA - T&R, Site 70141476.
-NOTE: This session is executing on the X64_10PRO  platform.
 
-
-
-NOTE: Updated analytical products:
-
-      SAS/STAT 14.3
-      SAS/ETS 14.3
-      SAS/IML 14.3
-      SAS/QC 14.3
-
-NOTE: Additional host information:
-
- X64_10PRO WIN 10.0.17763  Workstation
-
-NOTE: SAS initialization used:
-      real time           3.80 seconds
-      cpu time            1.29 seconds
-
-WARNING: One or more libraries specified in the concatenated library SASHELP
-WARNING: do not exist.  These libraries were removed from the concatenation.
-1
 2    *******************************************************************************;
 3    **************** 80-character banner for column width reference ***************;
 4    * (set window width to banner width to calibrate line length to 80 characters *;
