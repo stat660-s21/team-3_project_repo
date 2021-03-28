@@ -1,27 +1,5 @@
 
-2    *******************************************************************************;
-3    **************** 80-character banner for column width reference ***************;
-4    * (set window width to banner width to calibrate line length to 80 characters *;
-5    *******************************************************************************;
-6
-7    /*
-8    create macro variable with path to directory where this file is located,
-9    enabling relative imports
-10   */
-11   %let path=%sysfunc(tranwrd(%sysget(SAS_EXECFILEPATH),%sysget(SAS_EXECFILENAME),));
-ERROR: An error occurred while executing function TRANWRD referenced by the %SYSFUNC or %QSYSFUNC macro
-       function.
-12
-13   /*
-14   execute data-prep file, which will generate final analytic dataset used to
-15   answer the research questions below
-16   */
-17   %include "&path.STAT660-01_s21-team-3_data_preparation.sas";
-WARNING: Physical file does not exist, C:\Users\cv4594\STAT660-01_s21-team-3_data_preparation.sas.
-ERROR: Cannot open %INCLUDE file STAT660-01_s21-team-3_data_preparation.sas.
-18
-19
-20   *******************************************************************************;
+20   /*******************************************************************************;
 21   * Research Question 1 Analysis Starting Point;
 22   *******************************************************************************;
 23   /*
@@ -34,7 +12,7 @@ ERROR: Cannot open %INCLUDE file STAT660-01_s21-team-3_data_preparation.sas.
 27   */
 28
 29
-30   *******************************************************************************;
+30   /*******************************************************************************;
 31   * Research Question 2 Analysis Starting Point;
 32   *******************************************************************************;
 33   /*
@@ -46,7 +24,7 @@ ERROR: Cannot open %INCLUDE file STAT660-01_s21-team-3_data_preparation.sas.
 35   */
 36
 37
-38   *******************************************************************************;
+38   /*******************************************************************************;
 39   * Research Question 3 Analysis Starting Point;
 40   *******************************************************************************;
 41   /*
