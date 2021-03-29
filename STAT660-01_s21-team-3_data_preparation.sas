@@ -23,8 +23,9 @@ Excel worksheet
 
 [Data Dictionary] https://data.chhs.ca.gov/dataset/6e946377-6360-400b-b8df-3528cfdb8b4d/
 resource/fd27d1b0-0079-4bcd-9a3f-d52c1a4d6371/download/hid-datadictionaryltcstaffing.docx
-[Unique ID Schema] The column ìFAC_NOî is a primary key and is equivalent to the
-unique id column ìOSHPD_IDî in ltcfutil15.
+
+[Unique ID Schema] The column ‚ÄúFAC_NO‚Äù is a primary key and is equivalent to the
+unique id column ‚ÄúOSHPD_ID‚Äù in ltcfutil15.
 */
 %let inputDataset1DSN = ltcfstaffing15;
 %let inputDataset1URL =
@@ -51,8 +52,8 @@ was downloaded and converted to an Excel worksheet
 [Data Dictionary] https://data.chhs.ca.gov/dataset/4327ea61-c69b-4f43-a0eb-a354476880bb/
 resource/c89224f9-1b17-4967-a1b3-26285f9adf28/download/hid-datadictionaryltcprofitability.docx
 
-[Unique ID Schema] The column ìFAC_NOî is a primary key and is equivalent to the unique id 
-column ìOSHPD_IDî in ltcfutil15.
+[Unique ID Schema] The column ‚ÄúFAC_NO‚Äù is a primary key and is equivalent to the unique id 
+column ‚ÄúOSHPD_ID‚Äù in ltcfutil15.
 */
 %let inputDataset2DSN = ltcfprofitability15;
 %let inputDataset2URL =
@@ -80,6 +81,7 @@ was downloaded and subset to only include 2015 information
 
 [Data Dictionary] https://data.chhs.ca.gov/dataset/ecd99c78-5032-4299-8067-a8a1e3eb434b/
 resource/65ad64d6-5092-43b5-bd7c-c5734601b17f/download/ltcfrm15.pdf
+
 [Unique ID Schema] The column OSHPD_ID is a unique id.
 */
 %let inputDataset3DSN = ltcfutil15;
