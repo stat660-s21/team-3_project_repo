@@ -43,4 +43,5 @@ Question 2 of 3: Are the total hours worked by registered nurses dependent on th
 * Research Question 3 Analysis Starting Point;
 *******************************************************************************;
 /*
-Question 3 of 3:  Is a long term care facility dependent on the total patient census days in order to be profitable? In other words do the facilities that are most profitable have the highest patient days or can a facility be profitable and still log lower patient days? (Rationale: This should help identify whether the patient census days are a significant factor in determining
+Question 3 of 3:  Is a long term care facility dependent on the total patient census days in order to be profitable? In other words do the facilities that are most profitable have the highest patient days or can a facility be profitable and still log lower patient days? (Rationale: This should help identify whether the patient census days are a significant factor in determining profitability.) [Note: This compares the column “PATIENT_DAYS with “NET_INCOME” from ltcfprofitability.]
+*/
