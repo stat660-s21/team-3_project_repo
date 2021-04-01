@@ -23,10 +23,10 @@ answer the research questions below
 Question 1 of 3: Do the Investor Owned long term care facilities on average make
 more net income than the Not for Profit long term care facilities?
 
-Rationale:This should help identify   if the type of ownership control impacts
+Rationale: This should help identify if the type of ownership control impacts
 howprofitable the long term care facility will be.
 
-Note: This compares the columns“NET_INCOME” and “TYPE_CNTRL” from 
+Note: This compares the columns “NET_INCOME” and “TYPE_CNTRL” from 
 ltcfprofitability.
 */
 
