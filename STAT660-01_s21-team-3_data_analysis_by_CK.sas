@@ -28,7 +28,6 @@ howprofitable the long term care facility will be.
 
 Note: This compares the columns“NET_INCOME” and “TYPE_CNTRL” from 
 ltcfprofitability.
-
 */
 
 
