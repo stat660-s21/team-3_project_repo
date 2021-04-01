@@ -20,7 +20,6 @@ answer the research questions below
 * Research Question 1 Analysis Starting Point;
 *******************************************************************************;
 /*
-
 Question 1 of 3: Do the Investor Owned long term care facilities on average make
 more net income than the Not for Profit long term care facilities?
 
@@ -52,7 +51,7 @@ Note: This compares the column “PRDHR_RN” with “PATIENT_DAYS” from ltcfstaffing.
 * Research Question 3 Analysis Starting Point;
 *******************************************************************************;
 /*
-Question 3 of 3:  Is a long term care facility dependent on the total patient 
+Question 3 of 3: Is a long term care facility dependent on the total patient 
 census days in order to be profitable? In other words do the facilities that
 are most profitable have the highest patient days or can a facility be profitable
 and still log lower patient days?
