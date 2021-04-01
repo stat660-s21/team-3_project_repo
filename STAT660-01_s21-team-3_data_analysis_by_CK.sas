@@ -20,7 +20,6 @@ answer the research questions below
 * Research Question 1 Analysis Starting Point;
 *******************************************************************************;
 /*
-
 Question 1 of 3: Do the Investor Owned long term care facilities on average make
 more net income than the Not for Profit long term care facilities?
 
