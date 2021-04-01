@@ -2,7 +2,6 @@
 **************** 80-character banner for column width reference ***************;
 * (set window width to banner width to calibrate line length to 80 characters *;
 *******************************************************************************;
-
 /*
 create macro variable with path to directory where this file is located,
 enabling relative imports
@@ -23,10 +22,10 @@ answer the research questions below
 Question 1 of 3: Do the Investor Owned long term care facilities on average make
 more net income than the Not for Profit long term care facilities?
 
-Rationale:This should help identify   if the type of ownership control impacts
-howprofitable the long term care facility will be.
+Rationale: This should help identify if the type of ownership control impacts
+how profitable the long term care facility will be.
 
-Note: This compares the columns“NET_INCOME” and “TYPE_CNTRL” from 
+Note: This compares the columns “NET_INCOME” and “TYPE_CNTRL” from 
 ltcfprofitability.
 */
 
