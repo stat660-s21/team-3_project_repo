@@ -16,11 +16,6 @@ answer the research questions below
 %include "&path.STAT660-01_s21-team-3_data_preparation.sas";
 
 
-
-
-
-
-
 *******************************************************************************;
 * Research Question 1 Analysis Starting Point;
 *******************************************************************************;
