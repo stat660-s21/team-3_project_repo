@@ -27,6 +27,8 @@ Rationale: This should help identify whether densely population locations in
 California may have more expensive long-term care facilities.
 
 Note: This compares the column “NET_INCOME” from ltcfprofitability15.
+
+Limitations: None. No missing values in any of the relevant columns.
 */
 
 
@@ -44,6 +46,8 @@ are also the facilities with the most profit.
 Note: This sums the columns “PRDHR_MGT”, “PRDHR_RN”, “PRDHR_LVN”, “PRDHR_NA”, 
 “PRDHR_TSP”, “PRDHR_PSY”, and “PRDHR_OTH” and compares between facilities and 
 county from ltcfstaffing15.
+
+Limitations: None. No missing values in any of the relevant columns.
 */
 
 
@@ -51,10 +55,13 @@ county from ltcfstaffing15.
 * Research Question 3 Analysis Starting Point;
 *******************************************************************************;
 /*
-Question 3 of 3: What is the most common length of stay before discharge at the 
-most profitable long-term care facilities? 
+Question 3 of 3: What is the most common length of stay before discharge from 
+hospital at the most profitable long-term care facilities from Research Question 2? 
 
-Rationale: This would help identify what types of visits may be more costly.
+Rationale: This would help identify whether long stays could be attributed to
+more profitable facilities.
 
-Note: This compares the columns that start with “DIS_LTC_...” from ltcfutil15.
+Note: This compares the column DIS_LTC_PATIENT_HOSP from ltcfutil15.
+
+Limitations: Values of DIS_LTC_PATIENT_HOSP that equal to zero should be excluded from this analysis since they are potentially missing data values.
 */
