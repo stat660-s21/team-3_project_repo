@@ -29,7 +29,7 @@ unique id column ‚ÄúOSHPD_ID‚Äù in ltcfutil15.
 */
 %let inputDataset1DSN = ltcfstaffing15;
 %let inputDataset1URL =
-https://github.com/stat660/team-3_project_repo/blob/sl-week2/data/ltcfstaffing15.xlsx?raw=true
+https://github.com/stat660/team-3_project_repo/blob/main/data/ltcfstaffing15.xlsx?raw=true
 ;
 %let inputDataset1Type = XLSX;
 
@@ -57,7 +57,7 @@ column ‚ÄúOSHPD_ID‚Äù in ltcfutil15.
 */
 %let inputDataset2DSN = ltcfprofitability15;
 %let inputDataset2URL =
-https://github.com/stat660/team-3_project_repo/blob/sl-week2/data/ltcfprofitability15.xlsx?raw=true
+https://github.com/stat660/team-3_project_repo/blob/main/data/ltcfprofitability15.xlsx?raw=true
 ;
 %let inputDataset2Type = XLSX;
 
@@ -86,7 +86,7 @@ resource/65ad64d6-5092-43b5-bd7c-c5734601b17f/download/ltcfrm15.pdf
 */
 %let inputDataset3DSN = ltcfutil15;
 %let inputDataset3URL =
-https://github.com/stat660/team-3_project_repo/blob/sl-week2/data/ltcfutil15.xlsx?raw=true
+https://github.com/stat660/team-3_project_repo/blob/main/data/ltcfutil15.xlsx?raw=true
 ;
 %let inputDataset3Type = XLSX;
 
@@ -145,3 +145,99 @@ proc sql;
     where libname = 'WORK'
     order by memname;
 quit;
+
+/*
+For ltcfstaffing15, the column ìFAC_NOî is a primary key. In addition, 
+rows should be removed if they are missing values for any of the primary key.
+After running the proc sort step below, the new dataset ltcfstaffing15_deduped
+will have no duplicate/repeated unique id values, and all unique id values will
+correspond to our experimental units of interest, which are listed California
+Long Term Care Facilities in 2015. This means the column FAC_NO in 
+ltcfstaffing15_deduped is guaranteed to be a primary key.
+*/
+proc sort
+        nodupkey
+        data=ltcfstaffing15
+        dupout=ltcfstaffing15_dups
+        out=ltcfstaffing15_deduped
+    ;
+	where
+        /* remove rows with missing primary key */
+        not(missing(FAC_NO))
+    ;
+    by
+        FAC_NO
+    ;
+run;
+
+/*
+For ltcfprofitability15, the column ìFAC_NOî is a primary key. In addition, 
+rows should be removed if they are missing values for any of the primary key.
+After running the proc sort step below, the new dataset ltcfprofitability15_deduped
+will have no duplicate/repeated unique id values, and all unique id values will
+correspond to our experimental units of interest, which are listed California
+Long Term Care Facilities in 2015. This means the column FAC_NO in 
+ltcfprofitability15_deduped is guaranteed to be a primary key.
+*/
+proc sort
+        nodupkey
+        data=ltcfprofitability15
+        dupout=ltcfprofitability15_dups
+        out=ltcfprofitability15_deduped
+    ;
+	where
+        /* remove rows with missing primary key */
+        not(missing(FAC_NO))
+    ;
+    by
+        FAC_NO
+    ;
+run;
+
+/*
+For ltcfprofitability15, the column ìFAC_NOî is a primary key. In addition, 
+rows should be removed if they are missing values for any of the primary key.
+After running the proc sort step below, the new dataset ltcfprofitability15_deduped
+will have no duplicate/repeated unique id values, and all unique id values will
+correspond to our experimental units of interest, which are listed California
+Long Term Care Facilities in 2015. This means the column FAC_NO in 
+ltcfprofitability15_deduped is guaranteed to be a primary key.
+*/
+proc sort
+        nodupkey
+        data=ltcfprofitability15
+        dupout=ltcfprofitability15_dups
+        out=ltcfprofitability15_deduped
+    ;
+	where
+        /* remove rows with missing primary key */
+        not(missing(FAC_NO))
+    ;
+    by
+        FAC_NO
+    ;
+run;
+
+/*
+For ltcfutil15, the column ìOSHPD_IDî is a primary key. In addition, 
+rows should be removed if they are missing values for any of the primary key.
+After running the proc sort step below, the new dataset ltcfutil15_deduped
+will have no duplicate/repeated unique id values, and all unique id values will
+correspond to our experimental units of interest, which are listed California
+Long Term Care Facilities in 2015. This means the column OSHPD_ID in 
+ltcfutil15_deduped is guaranteed to be a primary key.
+*/
+proc sort
+        nodupkey
+        data=ltcfutil15
+        dupout=ltcfutil15_dups
+        out=ltcfutil15_deduped
+    ;
+	where
+        /* remove rows with missing primary key */
+        not(missing(OSHPD_ID))
+    ;
+    by
+        OSHPD_ID
+    ;
+run;
