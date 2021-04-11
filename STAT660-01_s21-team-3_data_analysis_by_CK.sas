@@ -27,6 +27,8 @@ how profitable the long term care facility will be.
 
 Note: This compares the columns “NET_INCOME” and “TYPE_CNTRL” from 
 ltcfprofitability.
+
+Limitations: None. No missing values in any of the relevant columns.
 */
 
 
@@ -42,6 +44,8 @@ Rationale: This should help identify if the total patient census days are a
 significant factor in how many hours are worked by the registered nurses.
 
 Note: This compares the column “PRDHR_RN” with “PATIENT_DAYS” from ltcfstaffing.
+
+Limitations: None. No missing values in any of the relevant columns.
 */
 
 
@@ -59,4 +63,6 @@ significant factor in determining profitability.
 
 Note: This compares the column “PATIENT_DAYS with “NET_INCOME” from
 ltcfprofitability.
+
+Limitations: None. No missing values in any of the relevant columns.
 */
