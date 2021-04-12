@@ -24,8 +24,8 @@ Excel worksheet
 [Data Dictionary] https://data.chhs.ca.gov/dataset/6e946377-6360-400b-b8df-3528cfdb8b4d/
 resource/fd27d1b0-0079-4bcd-9a3f-d52c1a4d6371/download/hid-datadictionaryltcstaffing.docx
 
-[Unique ID Schema] The column “FAC_NO” is a primary key and is equivalent to the
-unique id column “OSHPD_ID” in ltcfutil15.
+[Unique ID Schema] The column â€œFAC_NOâ€ is a primary key and is equivalent to the
+unique id column â€œOSHPD_IDâ€ in ltcfutil15.
 */
 %let inputDataset1DSN = ltcfstaffing15;
 %let inputDataset1URL =
@@ -52,8 +52,8 @@ was downloaded and converted to an Excel worksheet
 [Data Dictionary] https://data.chhs.ca.gov/dataset/4327ea61-c69b-4f43-a0eb-a354476880bb/
 resource/c89224f9-1b17-4967-a1b3-26285f9adf28/download/hid-datadictionaryltcprofitability.docx
 
-[Unique ID Schema] The column “FAC_NO” is a primary key and is equivalent to the unique id 
-column “OSHPD_ID” in ltcfutil15.
+[Unique ID Schema] The column â€œFAC_NOâ€ is a primary key and is equivalent to the unique id 
+column â€œOSHPD_IDâ€ in ltcfutil15.
 */
 %let inputDataset2DSN = ltcfprofitability15;
 %let inputDataset2URL =
@@ -147,7 +147,7 @@ proc sql;
 quit;
 
 /*
-For ltcfstaffing15, the column �FAC_NO� is a primary key. In addition, 
+For ltcfstaffing15, the column “FAC_NO” is a primary key. In addition, 
 rows should be removed if they are missing values for any of the primary key.
 After running the proc sort step below, the new dataset ltcfstaffing15_deduped
 will have no duplicate/repeated unique id values, and all unique id values will
@@ -171,7 +171,7 @@ proc sort
 run;
 
 /*
-For ltcfprofitability15, the column �FAC_NO� is a primary key. In addition, 
+For ltcfprofitability15, the column “FAC_NO” is a primary key. In addition, 
 rows should be removed if they are missing values for any of the primary key.
 After running the proc sort step below, the new dataset ltcfprofitability15_deduped
 will have no duplicate/repeated unique id values, and all unique id values will
@@ -195,31 +195,7 @@ proc sort
 run;
 
 /*
-For ltcfprofitability15, the column �FAC_NO� is a primary key. In addition, 
-rows should be removed if they are missing values for any of the primary key.
-After running the proc sort step below, the new dataset ltcfprofitability15_deduped
-will have no duplicate/repeated unique id values, and all unique id values will
-correspond to our experimental units of interest, which are listed California
-Long Term Care Facilities in 2015. This means the column FAC_NO in 
-ltcfprofitability15_deduped is guaranteed to be a primary key.
-*/
-proc sort
-        nodupkey
-        data=ltcfprofitability15
-        dupout=ltcfprofitability15_dups
-        out=ltcfprofitability15_deduped
-    ;
-	where
-        /* remove rows with missing primary key */
-        not(missing(FAC_NO))
-    ;
-    by
-        FAC_NO
-    ;
-run;
-
-/*
-For ltcfutil15, the column �OSHPD_ID� is a primary key. In addition, 
+For ltcfutil15, the column “OSHPD_ID” is a primary key. In addition, 
 rows should be removed if they are missing values for any of the primary key.
 After running the proc sort step below, the new dataset ltcfutil15_deduped
 will have no duplicate/repeated unique id values, and all unique id values will
