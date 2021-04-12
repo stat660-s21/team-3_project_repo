@@ -56,13 +56,14 @@ Limitations: None. No missing values in any of the relevant columns.
 *******************************************************************************;
 /*
 Question 3 of 3: What is the most common length of stay before discharge from 
-hospital at the most profitable long-term care facilities from Research Question 2? 
+hospital at the most profitable long-term care facilities from Research 
+Question 2? 
 
 Rationale: This would help identify whether long stays could be attributed to
 more profitable facilities.
 
 Note: This compares the column DIS_LTC_PATIENT_HOSP from ltcfutil15.
 
-Limitations: Values of DIS_LTC_PATIENT_HOSP that equal to zero should be excluded
-from this analysis since they are potentially missing data values.
+Limitations: Values of DIS_LTC_PATIENT_HOSP that equal to zero should be 
+excluded from this analysis since they are potentially missing data values.
 */
