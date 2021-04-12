@@ -26,7 +26,7 @@ have the highest net profit margin?
 Rationale: This should help identify whether densely population locations in 
 California may have more expensive long-term care facilities.
 
-Note: This compares the column “NET_INCOME” from ltcfprofitability15.
+Note: This compares the column â€œNET_INCOMEâ€ from ltcfprofitability15.
 
 Limitations: None. No missing values in any of the relevant columns.
 */
@@ -43,8 +43,8 @@ Question 1?
 Rationale: This would help identify whether facilities with the largest staff 
 are also the facilities with the most profit.
 
-Note: This sums the columns “PRDHR_MGT”, “PRDHR_RN”, “PRDHR_LVN”, “PRDHR_NA”, 
-“PRDHR_TSP”, “PRDHR_PSY”, and “PRDHR_OTH” and compares between facilities and 
+Note: This sums the columns â€œPRDHR_MGTâ€, â€œPRDHR_RNâ€, â€œPRDHR_LVNâ€, â€œPRDHR_NAâ€, 
+â€œPRDHR_TSPâ€, â€œPRDHR_PSYâ€, and â€œPRDHR_OTHâ€ and compares between facilities and 
 county from ltcfstaffing15.
 
 Limitations: None. No missing values in any of the relevant columns.
@@ -63,5 +63,6 @@ more profitable facilities.
 
 Note: This compares the column DIS_LTC_PATIENT_HOSP from ltcfutil15.
 
-Limitations: Values of DIS_LTC_PATIENT_HOSP that equal to zero should be excluded from this analysis since they are potentially missing data values.
+Limitations: Values of DIS_LTC_PATIENT_HOSP that equal to zero should be excluded
+from this analysis since they are potentially missing data values.
 */
