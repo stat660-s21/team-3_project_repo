@@ -31,8 +31,8 @@ to the unique id column â€œOSHPD_IDâ€ in ltcfutil15.
 */
 %let inputDataset1DSN = ltcfstaffing15;
 %let inputDataset1URL =
-https://github.com/stat660/team-3_project_repo/blob/main/data/ltcfstaffing15.xlsx?raw=true
-;
+https://github.com/stat660/team-3_project_repo/blob/main/data/ltcfstaffing15.xls
+x?raw=true;
 %let inputDataset1Type = XLSX;
 
 
@@ -65,8 +65,8 @@ to the unique id column â€œOSHPD_IDâ€ in ltcfutil15.
 */
 %let inputDataset2DSN = ltcfprofitability15;
 %let inputDataset2URL =
-https://github.com/stat660/team-3_project_repo/blob/main/data/ltcfprofitability15.xlsx?raw=true
-;
+https://github.com/stat660/team-3_project_repo/blob/main/data/ltcfprofitability15
+.xlsx?raw=true;
 %let inputDataset2Type = XLSX;
 
 
@@ -96,8 +96,8 @@ ecd99c78-5032-4299-8067-a8a1e3eb434b/resource/
 */
 %let inputDataset3DSN = ltcfutil15;
 %let inputDataset3URL =
-https://github.com/stat660/team-3_project_repo/blob/main/data/ltcfutil15.xlsx?raw=true
-;
+https://github.com/stat660/team-3_project_repo/blob/main/data/ltcfutil15.xlsx?
+raw=true;
 %let inputDataset3Type = XLSX;
 
 
