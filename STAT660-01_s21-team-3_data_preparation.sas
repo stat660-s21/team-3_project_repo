@@ -26,7 +26,7 @@ cfdb8b4d/resource/fd27d1b0-0079-4bcd-9a3f-d52c1a4d6371/download/hid-datadiction
 aryltcstaffing.docx
 
 [Unique ID Schema] The column “FAC_NO” is a primary key and is equivalent to
-the unique id column “OSHPD_ID” in ltcfutil15.
+the unique id column “OSHPD_ID”  in ltcfutil15.
 */
 %let inputDataset1DSN = ltcfstaffing15;
 %let inputDataset1URL =
