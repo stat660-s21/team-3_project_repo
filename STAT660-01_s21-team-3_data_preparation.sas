@@ -101,7 +101,7 @@ raw=true;
 %let inputDataset3Type = XLSX;
 
 
-/* load raw datasets over the wire, if they doesn't already exist */
+/* load raw datasets over the wire */
 %macro loadDataIfNotAlreadyAvailable(dsn,url,filetype);
     %put &=dsn;
     %put &=url;
@@ -145,10 +145,6 @@ raw=true;
 %mend;
 %loadDatasets
 
-/*
-print the names of all datasets/tables created above by querying the
-"dictionary tables" the SAS kernel maintains for the default "Work" library
-*/
 proc sql;
     select *
     from dictionary.tables
@@ -157,12 +153,12 @@ proc sql;
 quit;
 
 /*
-For ltcfstaffing15, the column “FAC_NO” is a primary key. In addition, 
-rows should be removed if they are missing values for any of the primary key.
+For ltcfstaffing15, the column “FAC_NO” is a primary key.
+Rows should be removed if they are missing values for the primary key.
 After running the proc sort step below, the new dataset ltcfstaffing15_deduped
 will have no duplicate/repeated unique id values, and all unique id values will
-correspond to our experimental units of interest, which are listed California
-Long Term Care Facilities in 2015. This means the column FAC_NO in 
+correspond to our experimental units of interest, which are operating 
+California Long Term Care Facilities in 2015. This means the column FAC_NO in 
 ltcfstaffing15_deduped is guaranteed to be a primary key.
 */
 proc sort
@@ -181,13 +177,14 @@ proc sort
 run;
 
 /*
-For ltcfprofitability15, the column “FAC_NO” is a primary key. In addition, 
-rows should be removed if they are missing values for any of the primary key.
+For ltcfprofitability15, the column “FAC_NO” is a primary key. 
+Rows should be removed if they are missing values for any of the primary key.
 After running the proc sort step below, the new dataset 
 ltcfprofitability15_deduped will have no duplicate/repeated unique id values, 
 and all unique id values will correspond to our experimental units of interest,
-which are listed California Long Term Care Facilities in 2015. This means the
-column FAC_NO in ltcfprofitability15_deduped is guaranteed to be a primary key.
+which are operating California Long Term Care Facilities in 2015. This means 
+the column FAC_NO in ltcfprofitability15_deduped is guaranteed to be a 
+primary key.
 */
 proc sort
         nodupkey
@@ -205,13 +202,13 @@ proc sort
 run;
 
 /*
-For ltcfutil15, the column “OSHPD_ID” is a primary key. In addition, 
-rows should be removed if they are missing values for any of the primary key.
+For ltcfutil15, the column “OSHPD_ID” is a primary key.
+Rows should be removed if they are missing values for any of the primary key.
 After running the proc sort step below, the new dataset ltcfutil15_deduped
 will have no duplicate/repeated unique id values, and all unique id values will
-correspond to our experimental units of interest, which are listed California
-Long Term Care Facilities in 2015. This means the column OSHPD_ID in 
-ltcfutil15_deduped is guaranteed to be a primary key.
+correspond to our experimental units of interest, which are operating 
+California Long Term Care Facilities in 2015. This means the column OSHPD_ID 
+in ltcfutil15_deduped is guaranteed to be a primary key.
 */
 proc sort
         nodupkey
