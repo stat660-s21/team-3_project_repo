@@ -145,13 +145,6 @@ raw=true;
 %mend;
 %loadDatasets
 
-proc sql;
-    select *
-    from dictionary.tables
-    where libname = 'WORK'
-    order by memname;
-quit;
-
 /*
 For ltcfstaffing15, the column “FAC_NO” is a primary key.
 Rows should be removed if they are missing values for the primary key.
