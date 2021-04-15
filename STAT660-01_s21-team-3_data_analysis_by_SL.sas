@@ -26,30 +26,74 @@ have the highest net profit margin?
 Rationale: This should help identify whether densely population locations in 
 California may have more expensive long-term care facilities.
 
-Note: This compares the column ‚ÄúNET_INCOME‚Äù from ltcfprofitability15.
+Note: This compares the column NET_INCOMEù from ltcfprofitability15.
 
 Limitations: None. No missing values in any of the relevant columns.
 */
 
+title "Inspect COUNTY_NAME and NET_INCOME from ltcfprofitability15_deduped";
+proc means
+        data=ltcfprofitability15_deduped
+        maxdec=2
+        missing
+        n /* number of observations */
+        nmiss /* number of missing values */
+        min q1 median q3 max  /* five-number summary */
+        mean std /* two-number summary */
+    ;
+    var 
+        NET_INCOME
+	;
+	class
+		COUNTY_NAME
+    ;
+    label
+        NET_INCOME=" "
+    ;
+run;
+title;
 
 *******************************************************************************;
 * Research Question 2 Analysis Starting Point;
 *******************************************************************************;
 /*
-Question 2 of 3: What are the top ten long-term care facilities with the most 
-hours logged by staff and are they in the top five counties from Research 
-Question 1?
+Question 2 of 3: What are the top five counties where long-term care facilities 
+have the most number of hours logged by staff?
 
-Rationale: This would help identify whether facilities with the largest staff 
-are also the facilities with the most profit.
+Rationale: This would help identify whether number a county's net profit margin
+might have a relationship with the amount of staff hours.
 
-Note: This sums the columns ‚ÄúPRDHR_MGT‚Äù, ‚ÄúPRDHR_RN‚Äù, ‚ÄúPRDHR_LVN‚Äù, ‚ÄúPRDHR_NA‚Äù, 
-‚ÄúPRDHR_TSP‚Äù, ‚ÄúPRDHR_PSY‚Äù, and ‚ÄúPRDHR_OTH‚Äù and compares between facilities and 
+Note: This sums the columns PRDHR_MGTù, PRDHR_RNù, PRDHR_LVNù, PRDHR_NAù,
+PRDHR_TSP, PRDHR_PSYù, and PRDHR_OTHù and compares between facilities and 
 county from ltcfstaffing15.
 
 Limitations: None. No missing values in any of the relevant columns.
 */
 
+title "Inspect COUNTY_NAME, PRDHR_MGTù, PRDHR_RNù, PRDHR_LVNù, PRDHR_NAù, 
+PRDHR_TSPù, PRDHR_PSY, and PRDHR_OTH from ltcfstaffing15_deduped";
+proc means
+        data=ltcfstaffing15_deduped
+		maxdec=0
+		sum
+	;
+    var 
+        PRDHR_MGT PRDHR_RN PRDHR_LVN PRDHR_NA PRDHR_TSP PRDHR_PSY PRDHR_OTH
+    ;
+	class
+		COUNTY_NAME
+	;
+	label
+        PRDHR_MGT=" "
+		PRDHR_RN=" "
+		PRDHR_LVN=" "
+		PRDHR_NA=" "
+		PRDHR_TSP=" "
+		PRDHR_PSY=" "
+		PRDHR_OTH=" "
+    ;
+run;
+title;
 
 *******************************************************************************;
 * Research Question 3 Analysis Starting Point;
@@ -67,3 +111,25 @@ Note: This compares the column DIS_LTC_PATIENT_HOSP from ltcfutil15.
 Limitations: Values of DIS_LTC_PATIENT_HOSP that equal to zero should be 
 excluded from this analysis since they are potentially missing data values.
 */
+
+title "Inspect DIS_LTC_PATIENT_HOSP from ltcfutil15_deduped";
+proc means
+        data=ltcfutil15_deduped
+        maxdec=2
+        missing
+        n /* number of observations */
+        nmiss /* number of missing values */
+        min q1 median q3 max  /* five-number summary */
+        mode /* most common days of stay */
+    ;
+    var 
+        DIS_LTC_PATIENT_HOSP
+	;
+	class
+		COUNTY
+    ;
+    label
+        DIS_LTC_PATIENT_HOSP=" "
+    ;
+run;
+title;
