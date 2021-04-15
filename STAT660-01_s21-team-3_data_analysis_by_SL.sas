@@ -64,7 +64,7 @@ Rationale: This would help identify whether number a county's net profit margin
 might have a relationship with the amount of staff hours.
 
 Note: This sums the columns PRDHR_MGTù, PRDHR_RNù, PRDHR_LVNù, PRDHR_NAù,
-PRDHR_TSP, PRDHR_PSYù, and PRDHR_OTHù and compares between facilities and 
+PRDHR_TSP, PRDHR_PSYù, and PRDHR_OTHù and compares between each 
 county from ltcfstaffing15.
 
 Limitations: None. No missing values in any of the relevant columns.
@@ -99,9 +99,8 @@ title;
 * Research Question 3 Analysis Starting Point;
 *******************************************************************************;
 /*
-Question 3 of 3: What is the most common length of stay before discharge from 
-hospital at the most profitable long-term care facilities from Research 
-Question 2? 
+Question 3 of 3: What is the most common length of stay before discharge in 
+each county? 
 
 Rationale: This would help identify whether long stays could be attributed to
 more profitable facilities.
@@ -115,12 +114,12 @@ excluded from this analysis since they are potentially missing data values.
 title "Inspect DIS_LTC_PATIENT_HOSP from ltcfutil15_deduped";
 proc means
         data=ltcfutil15_deduped
-        maxdec=2
+        maxdec=0
         missing
         n /* number of observations */
         nmiss /* number of missing values */
         min q1 median q3 max  /* five-number summary */
-        mode /* most common days of stay */
+        mode /* most common number */
     ;
     var 
         DIS_LTC_PATIENT_HOSP
