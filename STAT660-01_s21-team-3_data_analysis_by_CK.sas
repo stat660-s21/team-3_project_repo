@@ -31,6 +31,27 @@ ltcfprofitability.
 Limitations: None. No missing values in any of the relevant columns.
 */
 
+title "Inspect TYPE_CNTRL and NET_INCOME from ltcfprofitability15_deduped";
+proc means
+        data=ltcfprofitability15_deduped
+        maxdec=2
+        missing
+        n /* number of observations */
+        nmiss /* number of missing values */
+        min q1 median q3 max  /* five-number summary */
+        mean std /* two-number summary */
+    ;
+    var 
+        NET_INCOME
+	;
+	class
+		TYPE_CNTRL
+    ;
+    label
+        NET_INCOME=" "
+    ;
+run;
+title;
 
 *******************************************************************************;
 * Research Question 2 Analysis Starting Point;
@@ -48,6 +69,23 @@ Note: This compares the column “PRDHR_RN” with “PATIENT_DAYS” from ltcfstaffing.
 Limitations: None. No missing values in any of the relevant columns.
 */
 
+title "Inspect PRDHR_RN and PATIENT_DAYS from from ltcfstaffing15_deduped";
+proc means
+        data=ltcfstaffing15_deduped
+		maxdec=0
+		sum
+	;
+    var 
+        PRDHR_RN 
+    ;
+	class
+		PATIENT_DAYS
+	;
+	label
+    	PRDHR_RN=" "
+	;
+run;
+title;
 
 *******************************************************************************;
 * Research Question 3 Analysis Starting Point;
@@ -66,3 +104,25 @@ ltcfprofitability.
 
 Limitations: None. No missing values in any of the relevant columns.
 */
+
+title "Inspect PATIENT_DAYS and NET_INCOME from ltcfprofitability15_deduped";
+proc means
+        data=ltcfprofitability15_deduped
+        maxdec=2
+        missing
+        n /* number of observations */
+        nmiss /* number of missing values */
+        min q1 median q3 max  /* five-number summary */
+        mean std /* two-number summary */
+    ;
+    var 
+        NET_INCOME
+	;
+	class
+		PATIENT_DAYS
+    ;
+    label
+        NET_INCOME=" "
+    ;
+run;
+title;
