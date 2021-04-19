@@ -70,6 +70,7 @@ Limitations: None. No missing values in any of the relevant columns.
 */
 
 title "Inspect PRDHR_RN and PATIENT_DAYS from from ltcfstaffing15_deduped";
+
 proc means
         data=ltcfstaffing15_deduped
 		maxdec=0
