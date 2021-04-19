@@ -26,7 +26,7 @@ have the highest net profit margin?
 Rationale: This should help identify whether densely population locations in 
 California may have more expensive long-term care facilities.
 
-Note: This compares the column NET_INCOMEù from ltcfprofitability15.
+Note: This compares the column NET_INCOME from ltcfprofitability15.
 
 Limitations: None. No missing values in any of the relevant columns.
 */
@@ -63,15 +63,14 @@ have the most number of hours logged by staff?
 Rationale: This would help identify whether number a county's net profit margin
 might have a relationship with the amount of staff hours.
 
-Note: This sums the columns PRDHR_MGTù, PRDHR_RNù, PRDHR_LVNù, PRDHR_NAù,
-PRDHR_TSP, PRDHR_PSYù, and PRDHR_OTHù and compares between each 
-county from ltcfstaffing15.
+Note: This sums the columns PRDHR_MGT, PRDHR_RN, PRDHR_LVN, PRDHR_NA, PRDHR_TSP, 
+PRDHR_PSY, and PRDHR_OTH and compares between each county from ltcfstaffing15.
 
 Limitations: None. No missing values in any of the relevant columns.
 */
 
-title "Inspect COUNTY_NAME, PRDHR_MGTù, PRDHR_RNù, PRDHR_LVNù, PRDHR_NAù, 
-PRDHR_TSPù, PRDHR_PSY, and PRDHR_OTH from ltcfstaffing15_deduped";
+title "Inspect COUNTY_NAME, PRDHR_MGT¬ù, PRDHR_RN¬ù, PRDHR_LVN¬ù, PRDHR_NA¬ù, 
+PRDHR_TSP¬ù, PRDHR_PSY, and PRDHR_OTH from ltcfstaffing15_deduped";
 proc means
         data=ltcfstaffing15_deduped
 		maxdec=0
