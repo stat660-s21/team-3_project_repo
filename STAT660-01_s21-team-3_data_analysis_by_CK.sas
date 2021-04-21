@@ -43,7 +43,7 @@ proc means
     ;
     var 
         NET_INCOME
-		;
+	    ;
 	    class
 		    TYPE_CNTRL
     ;
@@ -74,16 +74,16 @@ proc means
         data=ltcfstaffing15_deduped
 		    maxdec=0
 		    sum
-	;
+    ;
     var 
         PRDHR_RN 
-    	;
+        ;
 	    class
 		    PATIENT_DAYS
-	;
+    ;
     label
         PRDHR_RN=" "
-	;
+    ;
 run;
 title;
 
@@ -117,7 +117,7 @@ proc means
     ;
     var 
         NET_INCOME
-		;
+	    ;
 	    class
 		    PATIENT_DAYS
     ;
