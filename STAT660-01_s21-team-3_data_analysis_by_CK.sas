@@ -34,18 +34,18 @@ Limitations: None. No missing values in any of the relevant columns.
 title "Inspect TYPE_CNTRL and NET_INCOME from ltcfprofitability15_deduped";
 proc means
         data=ltcfprofitability15_deduped
-        	maxdec=2
-        	missing
-        	n 
-        	nmiss 
-        	min q1 median q3 max  
-        	mean std 
+            maxdec=2
+            missing
+            n 
+            nmiss 
+            min q1 median q3 max  
+            mean std 
     ;
     var 
         NET_INCOME
 		;
-		class
-			TYPE_CNTRL
+	    class
+		    TYPE_CNTRL
     ;
     label
         NET_INCOME=" "
@@ -72,17 +72,17 @@ Limitations: None. No missing values in any of the relevant columns.
 title "Inspect PRDHR_RN and PATIENT_DAYS from from ltcfstaffing15_deduped";
 proc means
         data=ltcfstaffing15_deduped
-			maxdec=0
-			sum
+		    maxdec=0
+		    sum
 	;
     var 
         PRDHR_RN 
     	;
-		class
-			PATIENT_DAYS
+	    class
+		    PATIENT_DAYS
 	;
-	label
-    	PRDHR_RN=" "
+    label
+        PRDHR_RN=" "
 	;
 run;
 title;
@@ -108,18 +108,18 @@ Limitations: None. No missing values in any of the relevant columns.
 title "Inspect PATIENT_DAYS and NET_INCOME from ltcfprofitability15_deduped";
 proc means
         data=ltcfprofitability15_deduped
-        	maxdec=0
-        	missing
-        	n 
-        	nmiss 
-       		min q1 median q3 max  
-        	mean std 
+            maxdec=0
+            missing
+            n 
+            nmiss 
+       	    min q1 median q3 max  
+            mean std 
     ;
     var 
         NET_INCOME
 		;
-		class
-			PATIENT_DAYS
+	    class
+		    PATIENT_DAYS
     ;
     label
         NET_INCOME=" "
