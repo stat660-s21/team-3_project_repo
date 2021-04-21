@@ -43,9 +43,9 @@ proc means
     ;
     var 
         NET_INCOME
-	;
-	class
-		COUNTY_NAME
+    ;
+    class
+        COUNTY_NAME
     ;
     label
         NET_INCOME=" "
@@ -73,23 +73,23 @@ title "Inspect COUNTY_NAME, PRDHR_MGT, PRDHR_RN, PRDHR_LVN, PRDHR_NA,
 PRDHR_TSP, PRDHR_PSY, and PRDHR_OTH from ltcfstaffing15_deduped";
 proc means
         data=ltcfstaffing15_deduped
-		maxdec=0
-		sum
-	;
+        maxdec=0
+        sum
+    ;
     var 
         PRDHR_MGT PRDHR_RN PRDHR_LVN PRDHR_NA PRDHR_TSP PRDHR_PSY PRDHR_OTH
     ;
-	class
-		COUNTY_NAME
-	;
-	label
+    class
+        COUNTY_NAME
+    ;
+    label
         PRDHR_MGT=" "
-		PRDHR_RN=" "
-		PRDHR_LVN=" "
-		PRDHR_NA=" "
-		PRDHR_TSP=" "
-		PRDHR_PSY=" "
-		PRDHR_OTH=" "
+        PRDHR_RN=" "
+        PRDHR_LVN=" "
+        PRDHR_NA=" "
+        PRDHR_TSP=" "
+        PRDHR_PSY=" "
+        PRDHR_OTH=" "
     ;
 run;
 title;
@@ -122,9 +122,9 @@ proc means
     ;
     var 
         DIS_LTC_PATIENT_HOSP
-	;
-	class
-		COUNTY
+    ;
+    class
+        COUNTY
     ;
     label
         DIS_LTC_PATIENT_HOSP=" "
