@@ -43,9 +43,9 @@ proc means
     ;
     var 
         NET_INCOME
-	    ;
-	    class
-		    TYPE_CNTRL
+        ;
+        class
+            TYPE_CNTRL
     ;
     label
         NET_INCOME=" "
@@ -72,14 +72,14 @@ Limitations: None. No missing values in any of the relevant columns.
 title "Inspect PRDHR_RN and PATIENT_DAYS from from ltcfstaffing15_deduped";
 proc means
         data=ltcfstaffing15_deduped
-		    maxdec=0
-		    sum
+            maxdec=0
+            sum
     ;
     var 
         PRDHR_RN 
         ;
-	    class
-		    PATIENT_DAYS
+        class
+            PATIENT_DAYS
     ;
     label
         PRDHR_RN=" "
@@ -112,14 +112,14 @@ proc means
             missing
             n 
             nmiss 
-       	    min q1 median q3 max  
+            min q1 median q3 max  
             mean std 
     ;
     var 
         NET_INCOME
-	    ;
-	    class
-		    PATIENT_DAYS
+        ;
+        class
+            PATIENT_DAYS
     ;
     label
         NET_INCOME=" "
