@@ -229,39 +229,37 @@ Merge v1 analytic file to ltcfutils15
 data ltcf_analytic_file_v2;
     retain
         TYPE_CNTRL
-    NET_INCOME
-    COUNTY_NAME
-    PRDHR_MGT
-    PRDHR_RN
-    PRDHR_LVN
-    PRDHR_NA
-    PRDHR_TSP
-    PRDHR_PSY
-    PRDHR_OTH
-    DIS_LTC_PATIENT_HOSP
-    PATIENT_DAYS
-    COUNTY
+        NET_INCOME
+        COUNTY_NAME
+        PRDHR_MGT
+        PRDHR_RN
+        PRDHR_LVN
+        PRDHR_NA
+        PRDHR_TSP
+        PRDHR_PSY
+        PRDHR_OTH
+        DIS_LTC_PATIENT_HOSP
+        PATIENT_DAYS
+        COUNTY
     ;
     keep
         TYPE_CNTRL
-    NET_INCOME
-    COUNTY_NAME
-    PRDHR_MGT
-    PRDHR_RN
-    PRDHR_LVN
-    PRDHR_NA
-    PRDHR_TSP
-    PRDHR_PSY
-    PRDHR_OTH
-    DIS_LTC_PATIENT_HOSP
-    PATIENT_DAYS
-    COUNTY
-    merge ltcf_analytic_file_v1(rename(FAC_NO=ID))
-    ltcfutils15(
-        rename(
-        OSHPD_ID=ID
-        )
-    )
+        NET_INCOME
+        COUNTY_NAME
+        PRDHR_MGT
+        PRDHR_RN
+        PRDHR_LVN
+        PRDHR_NA
+        PRDHR_TSP
+        PRDHR_PSY
+        PRDHR_OTH
+        DIS_LTC_PATIENT_HOSP
+        PATIENT_DAYS
+        COUNTY
+    ;
+    merge 
+        ltcf_analytic_file_v1(rename=(FAC_NO=ID))
+        ltcfutil15_deduped(rename=(OSHPD_ID=ID))
     ;
     by
         ID
