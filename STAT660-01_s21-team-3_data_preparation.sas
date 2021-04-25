@@ -157,7 +157,7 @@ proc sort
         dupout=ltcfstaffing15_dups
         out=ltcfstaffing15_deduped
     ;
-	where
+    where
         /* remove rows with missing primary key */
         not(missing(FAC_NO))
     ;
@@ -182,7 +182,7 @@ proc sort
         dupout=ltcfprofitability15_dups
         out=ltcfprofitability15_deduped
     ;
-	where
+    where
         /* remove rows with missing primary key */
         not(missing(FAC_NO))
     ;
@@ -206,11 +206,61 @@ proc sort
         dupout=ltcfutil15_dups
         out=ltcfutil15_deduped
     ;
-	where
+    where
         /* remove rows with missing primary key */
         not(missing(OSHPD_ID))
     ;
     by
         OSHPD_ID
     ;
+run;
+
+/*
+Merge-match ltcf data by FAC_NO.
+*/
+data ltcf_analytic_file_v1;
+    merge ltcfstaffing15_deduped ltcfprofitability15_deduped;
+    by FAC_NO;
+run;
+
+/*
+Merge v1 analytic file to ltcfutils15
+*/
+data ltcf_analytic_file_v2;
+    retain
+        TYPE_CNTRL
+        NET_INCOME
+        COUNTY_NAME
+        PRDHR_MGT
+        PRDHR_RN
+        PRDHR_LVN
+        PRDHR_NA
+        PRDHR_TSP
+        PRDHR_PSY
+        PRDHR_OTH
+        DIS_LTC_PATIENT_HOSP
+        PATIENT_DAYS
+        COUNTY
+    ;
+    keep
+        TYPE_CNTRL
+        NET_INCOME
+        COUNTY_NAME
+        PRDHR_MGT
+        PRDHR_RN
+        PRDHR_LVN
+        PRDHR_NA
+        PRDHR_TSP
+        PRDHR_PSY
+        PRDHR_OTH
+        DIS_LTC_PATIENT_HOSP
+        PATIENT_DAYS
+        COUNTY
+    ;
+    merge 
+        ltcf_analytic_file_v1(rename=(FAC_NO=ID))
+        ltcfutil15_deduped(rename=(OSHPD_ID=ID))
+    ;
+    by
+        ID
 run;

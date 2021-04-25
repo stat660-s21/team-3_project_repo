@@ -31,25 +31,19 @@ Note: This compares the column NET_INCOME from ltcfprofitability15.
 Limitations: None. No missing values in any of the relevant columns.
 */
 
-title "Inspect COUNTY_NAME and NET_INCOME from ltcfprofitability15_deduped";
-proc means
-        data=ltcfprofitability15_deduped
-        maxdec=2
-        missing
-        n /* number of observations */
-        nmiss /* number of missing values */
-        min q1 median q3 max  /* five-number summary */
-        mean std /* two-number summary */
+proc sort
+        data=ltcf_analytic_file_v2
+        out=ltcf_analytic_file_sorted
     ;
-    var 
-        NET_INCOME
-    ;
-    class
-        COUNTY_NAME
-    ;
-    label
-        NET_INCOME=" "
-    ;
+    by descending NET_INCOME;
+run;
+
+title 
+"Top 5 Counties Where Long-Term Care Facilities Experience the Highest Net 
+Profit Margin";
+proc print data=ltcf_analytic_file_sorted(obs=5);
+    id COUNTY_NAME;
+    var NET_INCOME;
 run;
 title;
 
@@ -69,10 +63,9 @@ PRDHR_PSY, and PRDHR_OTH and compares between each county from ltcfstaffing15.
 Limitations: None. No missing values in any of the relevant columns.
 */
 
-title "Inspect COUNTY_NAME, PRDHR_MGT, PRDHR_RN, PRDHR_LVN, PRDHR_NA, 
-PRDHR_TSP, PRDHR_PSY, and PRDHR_OTH from ltcfstaffing15_deduped";
 proc means
-        data=ltcfstaffing15_deduped
+        data=ltcf_analytic_file_v2
+        out=ltcf_analytic_file_sorted
         maxdec=0
         sum
     ;
@@ -92,6 +85,14 @@ proc means
         PRDHR_OTH=" "
     ;
 run;
+
+title 
+"Top 5 Counties Where Long-Term Care Facilities Experience the Highest 
+Staff Hours";
+proc print data=ltcf_analytic_file_sorted(obs=5);
+    id COUNTY_NAME;
+    var PRDHR_MGT PRDHR_RN PRDHR_LVN PRDHR_NA PRDHR_TSP PRDHR_PSY PRDHR_OTH;
+run;
 title;
 
 *******************************************************************************;
@@ -110,14 +111,10 @@ Limitations: Values of DIS_LTC_PATIENT_HOSP that equal to zero should be
 excluded from this analysis since they are potentially missing data values.
 */
 
-title "Inspect DIS_LTC_PATIENT_HOSP from ltcfutil15_deduped";
 proc means
-        data=ltcfutil15_deduped
+        data=ltcf_analytic_file_v2
+        out=ltcf_analytic_file_sorted
         maxdec=0
-        missing
-        n /* number of observations */
-        nmiss /* number of missing values */
-        min q1 median q3 max  /* five-number summary */
         mode /* most common number */
     ;
     var 
@@ -129,5 +126,11 @@ proc means
     label
         DIS_LTC_PATIENT_HOSP=" "
     ;
+run;
+
+title "Most Commonly Reported Length of Stay Before Discharge in Each County";
+proc print data=ltcf_analytic_file_sorted(obs=1);
+    id COUNTY;
+    var DIS_LTC_PATIENT_HOSP;
 run;
 title;
