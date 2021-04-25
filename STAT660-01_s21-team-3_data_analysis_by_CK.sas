@@ -30,28 +30,20 @@ ltcfprofitability.
 
 Limitations: None. No missing values in any of the relevant columns.
 */
-
-title "Inspect TYPE_CNTRL and NET_INCOME from ltcfprofitability15_deduped";
-proc means
-        data=ltcfprofitability15_deduped
-        maxdec=2
-        missing
-        n 
-        nmiss 
-        min q1 median q3 max  
-        mean std 
-    ;
-    var 
-        NET_INCOME
-    ;
-    class
-        TYPE_CNTRL
-    ;
-    label
-        NET_INCOME=" "
-    ;
+proc freq data=ltcfprofitability15_deduped nlevels;
+    table NET_INCOME TYPE_CNTRL;
+    format TYPE_CNTRL;
 run;
-title;
+
+proc corr data=ltcfprofitability15_deduped; 
+    var TYPE_CNTRL; 
+    with NET_INCOME; 
+run; 
+
+title "Scatterplot of Investor Owned vs Not for Profit";
+proc gplot data=ltcfprofitability15_deduped; 
+    plot NET_INCOME*TYPE_CNTRL; 
+run;
 
 *******************************************************************************;
 * Research Question 2 Analysis Starting Point;
@@ -68,25 +60,20 @@ Note: This compares the column “PRDHR_RN” with “PATIENT_DAYS” from ltcfstaffing.
 
 Limitations: None. No missing values in any of the relevant columns.
 */
-
-title "Inspect PRDHR_RN and PATIENT_DAYS from from ltcfstaffing15_deduped";
-proc means
-        data=ltcfstaffing15_deduped
-        maxdec=0
-        sum
-    ;
-    var 
-        PRDHR_RN 
-    ;
-    class
-        PATIENT_DAYS
-    ;
-    label
-        PRDHR_RN=" "
-    ;
+proc freq data=ltcfstaffing15_deduped nlevels;
+    table PRDHR_RN PATIENT_DAYS;
+    format PATIENT_DAYS;
 run;
-title;
 
+proc corr data=ltcfstaffing15_deduped; 
+    var PRDHR_RN; 
+    with PATIENT_DAYS; 
+run; 
+
+title "Scatterplot of Hours worked by RN vs Total Patient Days";
+proc gplot data=ltcfstaffing15_deduped; 
+    plot PRDHR_RN*PATIENT_DAYS; 
+run;
 *******************************************************************************;
 * Research Question 3 Analysis Starting Point;
 *******************************************************************************;
@@ -105,24 +92,17 @@ ltcfprofitability.
 Limitations: None. No missing values in any of the relevant columns.
 */
 
-title "Inspect PATIENT_DAYS and NET_INCOME from ltcfprofitability15_deduped";
-proc means
-        data=ltcfprofitability15_deduped
-        maxdec=0
-        missing
-        n 
-        nmiss 
-        min q1 median q3 max  
-        mean std 
-    ;
-    var 
-        NET_INCOME
-    ;
-    class
-        PATIENT_DAYS
-    ;
-    label
-        NET_INCOME=" "
-    ;
+proc freq data=ltcfprofitability15_deduped nlevels;
+    table NET_INCOME PATIENT_DAYS;
+    format PATIENT_DAYS;
 run;
-title;
+
+proc corr data=ltcfprofitability15_deduped; 
+    var NET_INCOME; 
+    with PATIENT_DAYS; 
+run; 
+
+title "Scatterplot of Net Income vs Total Patient Days";
+proc gplot data=ltcfprofitability15_deduped; 
+    plot NET_INCOME*PATIENT_DAYS; 
+run;
