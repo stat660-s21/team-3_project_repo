@@ -249,8 +249,16 @@ data ltcf_analytic_file_v2;
 	;
 run;
 /*
-data integrity steps 
+
+
+
+Check ltcf_analytic_file for rows whose unique id values are repeated, missing,
+or correspond to a non-longterm care facility. 
+After executing the data step below, the resulting dataset should be empty,
+meaning the match-merge above did not introduce any duplicates or malformed
+unique ids.
 */
+
 data ltcf_analytic_file_v2_raw;
     set ltcf_analytic_file_v2;
     by ID;
