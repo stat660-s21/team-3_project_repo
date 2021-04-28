@@ -30,21 +30,21 @@ ltcfprofitability.
 
 Limitations: None. No missing values in any of the relevant columns.
 */
-proc freq data=ltcfprofitability15_deduped nlevels;
-    table NET_INCOME TYPE_CNTRL;
-    format TYPE_CNTRL;
+proc sort
+        data=ltcf_analytic_file_v2
+        out=ltcf_analytic_file_sorted
+    ;
+    by descending NET_INCOME;
 run;
 
-proc corr data=ltcfprofitability15_deduped; 
-    var TYPE_CNTRL; 
-    with NET_INCOME; 
-run; 
-
-title "Scatterplot of Investor Owned vs Not for Profit";
-proc gplot data=ltcfprofitability15_deduped; 
-    plot NET_INCOME*TYPE_CNTRL; 
+title 
+"Top 10 Type of Ownership Control Where Long-Term Care Facilities Experience the Highest Net 
+Profit Margin";
+proc print data=ltcf_analytic_file_sorted(obs=10);
+    id TYPE_CNTRL;
+    var NET_INCOME;
 run;
-
+title;
 *******************************************************************************;
 * Research Question 2 Analysis Starting Point;
 *******************************************************************************;
@@ -60,20 +60,40 @@ Note: This compares the column “PRDHR_RN” with “PATIENT_DAYS” from ltcfstaffing.
 
 Limitations: None. No missing values in any of the relevant columns.
 */
-proc freq data=ltcfstaffing15_deduped nlevels;
-    table PRDHR_RN PATIENT_DAYS;
-    format PATIENT_DAYS;
-run;
-
-proc corr data=ltcfstaffing15_deduped; 
+proc corr data=ltcf_analytic_file_v2; 
     var PRDHR_RN; 
     with PATIENT_DAYS; 
 run; 
 
 title "Scatterplot of Hours worked by RN vs Total Patient Days";
-proc gplot data=ltcfstaffing15_deduped; 
+
+proc gplot data=ltcf_analytic_file_v2; 
     plot PRDHR_RN*PATIENT_DAYS; 
 run;
+
+proc means
+        data=ltcf_analytic_file_v2
+        out=ltcf_analytic_file_sorted
+        maxdec=0
+        mode /* most common number */
+    ;
+    var 
+        PATIENT_DAYS
+    ;
+    class
+        PRDHR_RN
+    ;
+    label
+         PATIENT_DAYS=" "
+    ;
+run;
+
+title "10 Highest Total Hours Logged by RN at Long-Term Care Facilities listed with their corresponding Total Patient Days";
+proc print data=ltcf_analytic_file_sorted(obs=10);
+    id PRDHR_RN;
+    var PATIENT_DAYS;
+run;
+title;
 *******************************************************************************;
 * Research Question 3 Analysis Starting Point;
 *******************************************************************************;
@@ -86,23 +106,33 @@ and still log lower patient days?
 Rationale: This should help identify whether the patient census days are a 
 significant factor in determining profitability.
 
-Note: This compares the column “PATIENT_DAYS with “NET_INCOME” from
+Note: This compares the column “PATIENT_DAYS" with “NET_INCOME” from
 ltcfprofitability.
 
 Limitations: None. No missing values in any of the relevant columns.
 */
 
-proc freq data=ltcfprofitability15_deduped nlevels;
-    table NET_INCOME PATIENT_DAYS;
-    format PATIENT_DAYS;
+proc means
+        data=ltcf_analytic_file_v2
+        out=ltcf_analytic_file_sorted
+        maxdec=0
+        mode /* most common number */
+    ;
+    var 
+        PATIENT_DAYS
+    ;
+    class
+        NET_INCOME
+    ;
+    label
+         PATIENT_DAYS=" "
+    ;
 run;
 
-proc corr data=ltcfprofitability15_deduped; 
-    var NET_INCOME; 
-    with PATIENT_DAYS; 
-run; 
-
-title "Scatterplot of Net Income vs Total Patient Days";
-proc gplot data=ltcfprofitability15_deduped; 
-    plot NET_INCOME*PATIENT_DAYS; 
+title "Top 10 Long-Term Care Facilities experiencing the Highest Net 
+Profit Margin listed with their corresponding Total Patient Days";
+proc print data=ltcf_analytic_file_sorted(obs=10);
+    id NET_INCOME;
+    var PATIENT_DAYS;
 run;
+title;
