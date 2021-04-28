@@ -38,8 +38,8 @@ proc sort
 run;
 
 title 
-"Top 10 Type of Ownership Control Where Long-Term Care Facilities Experience the Highest Net 
-Profit Margin";
+"Top 10 Type of Ownership Control Where Long-Term Care Facilities
+Experience the Highest Net Profit Margin";
 proc print data=ltcf_analytic_file_sorted(obs=10);
     id TYPE_CNTRL;
     var NET_INCOME;
@@ -88,7 +88,8 @@ proc means
     ;
 run;
 
-title "10 Highest Total Hours Logged by RN at Long-Term Care Facilities listed with their corresponding Total Patient Days";
+title "10 Highest Total Hours Logged by RN at Long-Term Care Facilities
+listed with their corresponding Total Patient Days";
 proc print data=ltcf_analytic_file_sorted(obs=10);
     id PRDHR_RN;
     var PATIENT_DAYS;
