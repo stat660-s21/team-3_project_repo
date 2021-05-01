@@ -31,7 +31,7 @@ ltcfprofitability.
 Limitations: None. No missing values in any of the relevant columns.
 */
 proc sort
-        data=ltcf_analytic_file_v2
+        data=ltcf_analytic_file
         out=ltcf_analytic_file_sorted
     ;
     by descending NET_INCOME;
@@ -60,19 +60,19 @@ Note: This compares the column “PRDHR_RN” with “PATIENT_DAYS” from ltcfstaffing.
 
 Limitations: None. No missing values in any of the relevant columns.
 */
-proc corr data=ltcf_analytic_file_v2; 
+proc corr data=ltcf_analytic_file; 
     var PRDHR_RN; 
     with PATIENT_DAYS; 
 run; 
 
 title "Scatterplot of Hours worked by RN vs Total Patient Days";
 
-proc gplot data=ltcf_analytic_file_v2; 
+proc gplot data=ltcf_analytic_file; 
     plot PRDHR_RN*PATIENT_DAYS; 
 run;
 
 proc means
-        data=ltcf_analytic_file_v2
+        data=ltcf_analytic_file
         out=ltcf_analytic_file_sorted
         maxdec=0
         mode /* most common number */
@@ -114,7 +114,7 @@ Limitations: None. No missing values in any of the relevant columns.
 */
 
 proc means
-        data=ltcf_analytic_file_v2
+        data=ltcf_analytic_file
         out=ltcf_analytic_file_sorted
         maxdec=0
         mode /* most common number */

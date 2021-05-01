@@ -5,23 +5,29 @@
 
 /* 
 [Dataset 1 Name] ltcfstaffing15
+
 [Dataset Description] California Long Term Care Facility Nurse Staffing Hours
 Worked in 2015
+
 [Experimental Unit Description] Operating long-term care facilities in 
 California in 2015
+
 [Number of Observations] 1,112 
  
 [Number of Features] 15
+
 [Data Source] The file https://data.chhs.ca.gov/dataset/
 6e946377-6360-400b-b8df-3528cfdb8b4d/resource/
 5879d2fe-1729-40d6-b58f-61642dac00f4/
 download/long-term-care-facility-staffing.csv was downloaded and converted 
 to an Excel worksheet
+
 [Data Dictionary] https://data.chhs.ca.gov/dataset/
 6e946377-6360-400b-b8df-3528cfdb8b4d/resource/
 fd27d1b0-0079-4bcd-9a3f-d52c1a4d6371/download/hid-datadictionaryltcstaffing.docx
-[Unique ID Schema] The column ‚ÄúFAC_NO‚Äù is a primary key and is equivalent 
-to the unique id column ‚ÄúOSHPD_ID‚Äù in ltcfutil15.
+
+[Unique ID Schema] The column FAC_NOù is a primary key and is equivalent 
+to the unique id column OSHPD_IDù in ltcfutil15.
 */
 %let inputDataset1DSN = ltcfstaffing15;
 %let inputDataset1URL =
@@ -31,25 +37,32 @@ https://github.com/stat660/team-3_project_repo/blob/main/data/ltcfstaffing15.xls
 
 /*
 [Dataset 2 Name] ltcfprofitability15
+
 [Dataset Description] California Long Term Care Facility Income Statement Data 
 in 2015
+
 [Experimental Unit Description] Operating long-term care facilities in 
 California in 2015
+
 [Number of Observations] 1,112 
  
 [Number of Features] 14
+
 [Data Source] The file https://data.chhs.ca.gov/dataset/
 4327ea61-c69b-4f43-a0eb-a354476880bb/resource/
 1510e857-a2cf-4b40-b4c3-829fe72851e1/download/
 long-term-care-facility-profitability.csv was downloaded and converted to an 
 Excel worksheet
+
 [Data Dictionary] https://data.chhs.ca.gov/dataset/
 4327ea61-c69b-4f43-a0eb-a354476880bb/resource/
 c89224f9-1b17-4967-a1b3-26285f9adf28/download/
 hid-datadictionaryltcprofitability.docx
-[Unique ID Schema] The column ‚ÄúFAC_NO‚Äù is a primary key and is equivalent 
-to the unique id column ‚ÄúOSHPD_ID‚Äù in ltcfutil15.
+
+[Unique ID Schema] The column FAC_NOù is a primary key and is equivalent 
+to the unique id column OSHPD_IDù in ltcfutil15.
 */
+
 %let inputDataset2DSN = ltcfprofitability15;
 %let inputDataset2URL =
 https://github.com/stat660/team-3_project_repo/blob/main/data/ltcfprofitability15.xlsx?raw=true;
@@ -58,19 +71,26 @@ https://github.com/stat660/team-3_project_repo/blob/main/data/ltcfprofitability1
 
 /*
 [Dataset 3 Name] ltcfutil15
+
 [Dataset Description] California Long Term Care Facilities Service Capacity, 
 Utilization, Patients, and Capital/Equipment Expenditures in 2015
+
 [Experimental Unit Description] Operating long-term care facilities in 
 California in 2015
+
 [Number of Observations] 1,218
+
 [Number of Features] 240
+
 [Data Source] The file
 https://data.chhs.ca.gov/dataset/ecd99c78-5032-4299-8067-a8a1e3eb434b/resource/
 cf8035cd-00d6-4550-8af6-b4a702dc482b/download/ltc15utildatafinal.xlsx
 was downloaded and subset to only include 2015 information
+
 [Data Dictionary] https://data.chhs.ca.gov/dataset/
 ecd99c78-5032-4299-8067-a8a1e3eb434b/resource/
 65ad64d6-5092-43b5-bd7c-c5734601b17f/download/ltcfrm15.pdf
+
 [Unique ID Schema] The column OSHPD_ID is a unique id.
 */
 %let inputDataset3DSN = ltcfutil15;
@@ -123,6 +143,7 @@ https://github.com/stat660/team-3_project_repo/blob/main/data/ltcfutil15.xlsx?ra
 %mend;
 %loadDatasets
 
+
 /*
 For ltcfstaffing15, the column ìFAC_NOî is a primary key.
 Rows should be removed if they are missing values for the primary key.
@@ -147,8 +168,9 @@ proc sort
     ;
 run;
 
+
 /*
-For ltcfprofitability15, the column ìFAC_NOî is a primary key. 
+For ltcfprofitability15, the column FAC_NO is a primary key. 
 Rows should be removed if they are missing values for any of the primary key.
 After running the proc sort step below, the new dataset 
 ltcfprofitability15_deduped will have no duplicate/repeated unique id values, 
@@ -172,8 +194,9 @@ proc sort
     ;
 run;
 
+
 /*
-For ltcfutil15, the column ìOSHPD_IDî is a primary key.
+For ltcfutil15, the column OSHPD_ID is a primary key.
 Rows should be removed if they are missing values for any of the primary key.
 After running the proc sort step below, the new dataset ltcfutil15_deduped
 will have no duplicate/repeated unique id values, and all unique id values will
@@ -196,71 +219,37 @@ proc sort
     ;
 run;
 
+
 /*
-Merge-match ltcf data by FAC_NO.
+Merge-match ltcf data by FAC_NO and remove unnecessary variables.
 */
 data ltcf_analytic_file_v1;
-    merge ltcfstaffing15_deduped ltcfprofitability15_deduped;
+    merge ltcfstaffing15_deduped(drop=YEAR BEG_DATE END_DATE)
+        ltcfprofitability15_deduped(drop=YEAR BEG_DATE END_DATE);
     by FAC_NO;
 run;
 
+
 /*
-Merge v1 analytic file to ltcfutils15
+Merge v1 analytic file to ltcfutils15 to create the final analytic file.
 */
-data ltcf_analytic_file_v2;
-    retain
-        TYPE_CNTRL
-        NET_INCOME
-        COUNTY_NAME
-        PRDHR_MGT
-        PRDHR_RN
-        PRDHR_LVN
-        PRDHR_NA
-        PRDHR_TSP
-        PRDHR_PSY
-        PRDHR_OTH
-        DIS_LTC_PATIENT_HOSP
-        PATIENT_DAYS
-        COUNTY
-        ID
-    ;
-    keep
-        TYPE_CNTRL
-        NET_INCOME
-        COUNTY_NAME
-        PRDHR_MGT
-        PRDHR_RN
-        PRDHR_LVN
-        PRDHR_NA
-        PRDHR_TSP
-        PRDHR_PSY
-        PRDHR_OTH
-        DIS_LTC_PATIENT_HOSP
-        PATIENT_DAYS
-        COUNTY
-        ID
-    ;
-    merge 
-        ltcf_analytic_file_v1(rename=(FAC_NO=ID))
-        ltcfutil15_deduped(rename=(OSHPD_ID=ID))
-    ;
-    by
-        ID
-	;
+data ltcf_analytic_file;
+    merge ltcf_analytic_file_v1(rename=(FAC_NO=ID))
+        ltcfutil15_deduped(rename=(OSHPD_ID=ID TYPE_CNTRL=TYPE_CNTRL_UTILS));
+    by ID;
 run;
+
+
 /*
-
-
-
 Check ltcf_analytic_file for rows whose unique id values are repeated, missing,
-or correspond to a non-longterm care facility. 
+or correspond to not a long term care facility. 
+
 After executing the data step below, the resulting dataset should be empty,
 meaning the match-merge above did not introduce any duplicates or malformed
 unique ids.
 */
-
-data ltcf_analytic_file_v2_raw;
-    set ltcf_analytic_file_v2;
+data ltcf_analytic_file_raw_bad_ids;
+    set ltcf_analytic_file;
     by ID;
 
     if

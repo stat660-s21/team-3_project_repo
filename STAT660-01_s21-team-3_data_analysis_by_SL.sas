@@ -32,7 +32,7 @@ Limitations: None. No missing values in any of the relevant columns.
 */
 
 proc sort
-        data=ltcf_analytic_file_v2
+        data=ltcf_analytic_file
         out=ltcf_analytic_file_sorted
     ;
     by descending NET_INCOME;
@@ -64,7 +64,7 @@ Limitations: None. No missing values in any of the relevant columns.
 */
 
 proc means
-        data=ltcf_analytic_file_v2
+        data=ltcf_analytic_file
         out=ltcf_analytic_file_sorted
         maxdec=0
         sum
@@ -112,7 +112,7 @@ excluded from this analysis since they are potentially missing data values.
 */
 
 proc means
-        data=ltcf_analytic_file_v2
+        data=ltcf_analytic_file
         out=ltcf_analytic_file_sorted
         maxdec=0
         mode /* most common number */
