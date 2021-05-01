@@ -22,21 +22,34 @@ answer the research questions below
 /*
 Note: This compares the column NET_INCOME from ltcfprofitability15.
 
-Limitations: Values of NET_INCOME equal to 0 should be excluded from the analysis
-since they are potentially missing data values.
+Limitations: Values of NET_INCOME equal to 0 should be excluded from the 
+analysis since they are potentially missing data values.
 
-Methodology:
+Methodology: Use proc sort to create a temporary sorted table in descending
+order by NET_INCOME and then use proc print to print the first five rows of the
+sorted dataset.
 
-Followup Steps:
+Followup Steps: Next steps would involve finding data on the population count of 
+each county from 2015 to draw inferences on whether densely population counties
+have higher net profit margins.
 */
 
-/* Sort counties by net income increase. */
-proc sort
-        data=ltcf_analytic_file
-        out=ltcf_analytic_file_sorted
-    ;
-    by descending NET_INCOME;
+/* Calculate total net income by group. */
+ods exclude all;
+proc means data=ltcf_analytic_file
+        Sum
+        STACKODSOUTPUT;
+    var NET_INCOME;
+    class COUNTY_NAME;
+ods output Summary=SummedSummary;
 run;
+ods exclude none;
+
+/* Sort counties by net income. */
+proc sort data=SummedSummary out=SummedSummarySort;
+    by descending Sum;
+run;
+
 
 title1 justify=left
 'Question 1 of 3: What are the top five counties where long-term care facilities 
@@ -49,18 +62,22 @@ California may have more expensive long-term care facilities.'
 ;
 
 footnote1 justify=left
+'The'
 ;
 
 proc print 
-        data=ltcf_analytic_file_sorted(obs=5)
+        data=SummedSummarySort(obs=5)
         label
     ;
     id COUNTY_NAME;
-    var NET_INCOME;
+    var Sum;
     label
         COUNTY_NAME="County"
-        NET_INCOME="Net Income"
+        Sum="Net Income"
      ;
+	 format
+	     Sum dollar20.2
+	 ;
 run;
 
 /* clear titles/footnotes */
