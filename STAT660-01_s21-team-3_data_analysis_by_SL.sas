@@ -25,12 +25,13 @@ Note: This compares the column NET_INCOME from ltcfprofitability15.
 Limitations: Values of NET_INCOME equal to 0 should be excluded from the 
 analysis since they are potentially missing data values.
 
-Methodology: Use proc sort to create a temporary sorted table in descending
-order by NET_INCOME and then use proc print to print the first five rows of the
-sorted dataset.
+Methodology: Use proc means to sum total net income by county. Next, use proc
+sort to create a temporary sorted table in descending order by net income. 
+Finally, use proc print to print the first five rows of the sorted dataset and 
+format net income by dollars to two decimal places.
 
 Followup Steps: Next steps would involve finding data on the population count of 
-each county from 2015 to draw inferences on whether densely population counties
+each county from 2015 to draw inferences on whether densely populated counties
 have higher net profit margins.
 */
 
@@ -62,9 +63,23 @@ California may have more expensive long-term care facilities.'
 ;
 
 footnote1 justify=left
-'The'
+'Of the top five counties with largest net profit margins from long term care 
+facilities, two are from Southern California and three are from Northern 
+California.'
 ;
 
+footnote2 justify=left
+'It would be interesting to look at the number of long term care facilities 
+factoring into the net income count.'
+;
+
+footnote3 justify=left
+'Los Angeles had the highest net profit margin followed by the Bay Area counties
+Santa Clara and Alameda. It is possible this is associated with high costs of
+living in these counties.'
+;
+
+/* Print formatted table */
 proc print 
         data=SummedSummarySort(obs=5)
         label
@@ -78,6 +93,25 @@ proc print
 	 format
 	     Sum dollar20.2
 	 ;
+run;
+
+/* clear titles/footnotes */
+title;
+footnote;
+
+
+title1 'Net Income by County';
+footnote1
+"In the above plot, we can see that Los Angeles has significantly larger
+ profit margins than the other counties."
+;
+
+/* Bar Chart */
+proc sgplot data=SummedSummarySort(obs=5);
+    vbar COUNTY_NAME / response=Sum;
+	yaxis label="Net Income";
+	xaxis label="County";
+	format Sum dollar20.;
 run;
 
 /* clear titles/footnotes */
