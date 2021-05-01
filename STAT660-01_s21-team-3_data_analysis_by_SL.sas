@@ -35,7 +35,7 @@ each county from 2015 to draw inferences on whether densely populated counties
 have higher net profit margins.
 */
 
-/* Calculate total net income by group. */
+/* Calculate total net income by group */
 ods exclude all;
 proc means data=ltcf_analytic_file
         Sum
@@ -46,7 +46,7 @@ ods output Summary=SummedSummary;
 run;
 ods exclude none;
 
-/* Sort counties by net income. */
+/* Sort counties by net income */
 proc sort data=SummedSummary out=SummedSummarySort;
     by descending Sum;
 run;
@@ -127,10 +127,45 @@ PRDHR_PSY, and PRDHR_OTH and compares between each county from ltcfstaffing15.
 
 Limitations: None. No missing values in any of the relevant columns.
 
-Methodology:
+Methodology: Use proc means to sum staff hours by each position by county. 
+Next, use proc means again to sum all the hours reported from each position
+by county. Then, sort to create a temporary sorted table in descending order by 
+hours worked. Finally, use proc print to print the first five rows of the sorted 
+dataset and format hours worked with commas.
 
-Followup Steps:
+Followup Steps: Next steps would involve looking into salaries or wage per hour
+paid to staff.
 */
+
+/* Calculate sums of each staff position within each county */
+ods exclude all;
+proc means data=ltcf_analytic_file
+        Sum
+        STACKODSOUTPUT;
+    var PRDHR_MGT PRDHR_RN PRDHR_LVN PRDHR_NA PRDHR_TSP PRDHR_PSY PRDHR_OTH;
+    class COUNTY_NAME;
+ods output Summary=SummedSummary2;
+run;
+ods exclude none;
+
+
+/* Sum by county */
+ods exclude all;
+proc means data=SummedSummary2
+        Sum
+        STACKODSOUTPUT;
+    var Sum;
+    class COUNTY_NAME;
+ods output Summary=SummedSummary22;
+run;
+ods exclude none;
+
+
+/* Sort counties by hours */
+proc sort data=SummedSummary22 out=SummedSummarySort2;
+    by descending Sum;
+run;
+
 
 title1 justify=left
 'Question 2 of 3: What are the top five counties where long-term care facilities 
@@ -138,49 +173,45 @@ title1 justify=left
 ;
 
 title2 justify=left
-'Rationale: This would help identify whether number a countys net profit margin
- might have a relationship with the amount of staff hours.'
+'Rationale: This would help identify whether net profit margin might have a 
+ relationship with the amount of staff hours.'
 ;
 
 footnote1 justify=left
-''
+'Of the top five counties with largest number of staff hours worked from long term 
+ care facilities, the top three are from Southern California and the other two are 
+ from Northern California.'
 ;
 
 footnote2 justify=left
-''
+'It would be interesting to look at the size of long term care facilities and their 
+ patient capacity because that would mean more staff is needed.'
 ;
 
 footnote3 justify=left
-''
+'Los Angeles, San Diego and Orange counties have the highest number of staff hours
+ worked, which may mean there are more or larger facilities in Southern California
+ and that might be asociated with a preference for warmer weather by those who are
+ in the long term care facilities.'
 ;
 
-proc means
-        data=ltcf_analytic_file
-        out=ltcf_analytic_file_sorted
-        maxdec=0
-        sum
+
+/* Print formatted table */
+proc print 
+        data=SummedSummarySort2(obs=5)
+        label
     ;
-    var 
-        PRDHR_MGT PRDHR_RN PRDHR_LVN PRDHR_NA PRDHR_TSP PRDHR_PSY PRDHR_OTH
-    ;
-    class
-        COUNTY_NAME
-    ;
+    id COUNTY_NAME;
+    var Sum;
     label
-        PRDHR_MGT=" "
-        PRDHR_RN=" "
-        PRDHR_LVN=" "
-        PRDHR_NA=" "
-        PRDHR_TSP=" "
-        PRDHR_PSY=" "
-        PRDHR_OTH=" "
-    ;
+        COUNTY_NAME="County"
+        Sum="Staff Hours"
+     ;
+	 format
+	     Sum comma20.
+	 ;
 run;
 
-proc print data=ltcf_analytic_file_sorted(obs=5);
-    id COUNTY_NAME;
-    var PRDHR_MGT PRDHR_RN PRDHR_LVN PRDHR_NA PRDHR_TSP PRDHR_PSY PRDHR_OTH;
-run;
 
 /* clear titles/footnotes */
 title;
@@ -246,7 +277,7 @@ footnote2 justify=left
 
 footnote3 justify=left
 'Many Southern California counties have reported longer lengths of stay, which may
- indicate a preference for elderly people to live in warmer weather.'
+ indicate a larger population of elderly people in warmer weather.'
 ;
 
 
