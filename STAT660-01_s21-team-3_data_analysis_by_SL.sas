@@ -54,29 +54,29 @@ run;
 
 title1 justify=left
 'Question 1 of 3: What are the top five counties where long-term care facilities 
-have the highest net profit margin?'
+ have the highest net profit margin?'
 ;
 
 title2 justify=left
 'Rationale: This should help identify whether densely population locations in 
-California may have more expensive long-term care facilities.'
+ California may have more expensive long-term care facilities.'
 ;
 
 footnote1 justify=left
 'Of the top five counties with largest net profit margins from long term care 
-facilities, two are from Southern California and three are from Northern 
-California.'
+ facilities, two are from Southern California and three are from Northern 
+ California.'
 ;
 
 footnote2 justify=left
 'It would be interesting to look at the number of long term care facilities 
-factoring into the net income count.'
+ factoring into the net income count.'
 ;
 
 footnote3 justify=left
 'Los Angeles had the highest net profit margin followed by the Bay Area counties
-Santa Clara and Alameda. It is possible this is associated with high costs of
-living in these counties.'
+ Santa Clara and Alameda. It is possible this is associated with high costs of
+ living in these counties.'
 ;
 
 /* Print formatted table */
@@ -134,15 +134,24 @@ Followup Steps:
 
 title1 justify=left
 'Question 2 of 3: What are the top five counties where long-term care facilities 
-have the most number of hours logged by staff?'
+ have the most number of hours logged by staff?'
 ;
 
 title2 justify=left
 'Rationale: This would help identify whether number a countys net profit margin
-might have a relationship with the amount of staff hours.'
+ might have a relationship with the amount of staff hours.'
 ;
 
 footnote1 justify=left
+''
+;
+
+footnote2 justify=left
+''
+;
+
+footnote3 justify=left
+''
 ;
 
 proc means
@@ -185,45 +194,75 @@ Note: This compares the column DIS_LTC_PATIENT_HOSP from ltcfutil15.
 
 Limitations: Values of DIS_LTC_PATIENT_HOSP that equal to zero should be 
 excluded from this analysis since they are potentially missing data values.
+NA values are potentially not reported data values that will need to be 
+investigated further.
 
-Methodology:
+Methodology: Use proc means mode to find the most commonly reported length
+of stay before discharge. Next, use proc sort to create a temporary sorted table 
+in descending order by length of stay. Finally, use proc print to print the output
+for all counties and format days to 0 decimal places.
 
-Followup Steps:
+Followup Steps: Next steps would involve investigating the NA values.
 */
+
+/* Sort counties by common length of stay before discharge. */
+ods exclude all;
+proc means data=ltcf_analytic_file
+        mode
+        STACKODSOUTPUT;
+    var DIS_LTC_PATIENT_HOSP;
+    class COUNTY_NAME;
+ods output Summary=SummedSummary3;
+run;
+ods exclude none;
+
+
+/* Sort counties by length of stay. */
+proc sort data=SummedSummary3 out=SummedSummarySort3;
+    by descending Mode;
+run;
+
 
 title1 justify=left
 'Question 3 of 3: What is the most common length of stay before discharge in 
-each county?'
+ each county?'
 ;
 
 title2 justify=left
 'Rationale: This would help identify whether long stays could be attributed to
-more profitable facilities.'
+ more profitable facilities.'
 ;
 
 footnote1 justify=left
+'The most commonly reported length of stay was 211 days from Orange County. 
+ A significant number of counties did not have reported values.'
 ;
 
-proc means
-        data=ltcf_analytic_file
-        out=ltcf_analytic_file_sorted
-        maxdec=0
-        mode /* most common number */
-    ;
-    var 
-        DIS_LTC_PATIENT_HOSP
-    ;
-    class
-        COUNTY
-    ;
-    label
-        DIS_LTC_PATIENT_HOSP=" "
-    ;
-run;
+footnote2 justify=left
+'Orange County is on the list of top five counties with highest net profit margin,
+ so their profit margin could be related to longer lengths of stays at the 
+ hospital.'
+;
 
-proc print data=ltcf_analytic_file_sorted(obs=1);
-    id COUNTY;
-    var DIS_LTC_PATIENT_HOSP;
+footnote3 justify=left
+'Many Southern California counties have reported longer lengths of stay, which may
+ indicate a preference for elderly people to live in warmer weather.'
+;
+
+
+/* Print formatted table */
+proc print 
+        data=SummedSummarySort3
+        label
+    ;
+    id COUNTY_NAME;
+    var Mode;
+    label
+        COUNTY_NAME="County"
+        Mode="Most Common Length of Stay"
+     ;
+	 format
+	    Mode best12.;
 run;
 
 /* clear titles/footnotes */
