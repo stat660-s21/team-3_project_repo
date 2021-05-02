@@ -90,9 +90,9 @@ proc print
         COUNTY_NAME="County"
         Sum="Net Income"
      ;
-	 format
-	     Sum dollar20.2
-	 ;
+     format
+         Sum dollar20.2
+     ;
 run;
 
 /* clear titles/footnotes */
@@ -109,9 +109,9 @@ footnote1
 /* Bar Chart */
 proc sgplot data=SummedSummarySort(obs=5);
     vbar COUNTY_NAME / response=Sum;
-	yaxis label="Net Income";
-	xaxis label="County";
-	format Sum dollar20.;
+    yaxis label="Net Income";
+    xaxis label="County";
+    format Sum dollar20.;
 run;
 
 /* clear titles/footnotes */
@@ -207,9 +207,9 @@ proc print
         COUNTY_NAME="County"
         Sum="Staff Hours"
      ;
-	 format
-	     Sum comma20.
-	 ;
+     format
+         Sum comma20.
+     ;
 run;
 
 
@@ -292,8 +292,8 @@ proc print
         COUNTY_NAME="County"
         Mode="Most Common Length of Stay"
      ;
-	 format
-	    Mode best12.;
+     format
+        Mode best12.;
 run;
 
 /* clear titles/footnotes */
