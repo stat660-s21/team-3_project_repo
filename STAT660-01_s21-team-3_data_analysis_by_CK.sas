@@ -52,23 +52,29 @@ run;
 
 
 title1 justify=left
-'Question 1 of 3: Do the Investor Owned long term care facilities on average make more net income than the Not for Profit long term care facilities?'
+'Question 1 of 3: Do the Investor Owned long term care facilities on average
+ make more net income than the Not for Profit long term care facilities?'
 ;
 
 title2 justify=left
-'Rationale: This should help identify if the type of ownership control impacts how profitable the long term care facility will be.'
+'Rationale: This should help identify if the type of ownership control impacts
+ how profitable the long term care facility will be.'
 ;
 
 footnote1 justify=left
-'Of the top five types of ownership control with largest net profit margins from long term care facilities, the top three are investor owned.'
+'Of the top five types of ownership control with largest net profit margins
+ from long term care facilities, the top three are investor owned.'
 ;
 
 footnote2 justify=left
-'It would be interesting to look at other variables from long term care facilities factoring into the net income count.'
+'It would be interesting to look at other variables from long term care
+ facilities factoring into the net income count.'
 ;
 
 footnote3 justify=left
-'Investor Owned-Corr had the highest net profit margin followed by Investor Owned-Lim and Investor Owned-Par. It is possible this is associated with investors needing to see their profit returns being met.'
+'Investor Owned-Corr had the highest net profit margin followed by Investor
+ Owned-Lim and Investor Owned-Par. It is possible this is associated with
+ investors needing to see their profit returns being met.'
 ;
 
 /* Print formatted table */
@@ -94,8 +100,8 @@ footnote;
 
 title1 'Net Income by Type of Ownership Control';
 footnote1
-"In the above plot, we can see that Investor Owned-Corr Type Control has significantly larger
- profit margins than the other counties."
+"In the above plot, we can see that Investor Owned-Corr Type 
+ Control has significantly larger profit margins than the other counties."
 ;
 
 /* Bar Chart */
@@ -159,24 +165,31 @@ run;
 
 
 title1 justify=left
-'Question 2 of 3: Are the total hours worked by registered nurses dependent on the total patient census days? Does more patient days mean more hours have to be worked by the registered nurses?'
+'Question 2 of 3: Are the total hours worked by registered nurses dependent
+ on the total patient census days? Does more patient days mean more hours have
+ to be worked by the registered nurses?'
 ;
 
 title2 justify=left
-'Rationale: This should help identify if the total patient census days are a significant factor in how many hours are worked by the registered nurses.'
+'Rationale: This should help identify if the total patient census days are a 
+ significant factor in how many hours are worked by the registered nurses.'
 ;
 
 footnote1 justify=left
-'Of the top five total patient days with largest number of RN staff hours worked from long term care facilities, the top three total patient days are also associated with more staff hours logged by RN.'
+'Of the top five total patient days with largest number of RN staff hours
+ worked from long term care facilities, the top three total patient days
+ are also associated with more staff hours logged by RN.'
 ;
 
 footnote2 justify=left
-'It would be interesting to look at the size of long term care facilities and their 
- patient capacity because that would mean more RN staff is needed.'
+'It would be interesting to look at the size of long term care facilities
+ and their patient capacity because that would mean more RN staff is needed.'
 ;
 
 footnote3 justify=left
-'88779 is the most patient census days and it is associate with 79,652 hours logged by RN. As the total patient census days decrease, the hours logged by RN decrease. '
+'88779 is the most patient census days and it is associate with 79,652 hours 
+ logged by RN. As the total patient census days decrease, the hours logged
+ by RN decrease. '
 ;
 
 
@@ -238,12 +251,15 @@ run;
 
 
 title1 justify=left
-'Question 3 of 3: Is a long term care facility dependent on the total patient census days in order to be profitable? In other words do the facilities that
-are most profitable have the highest patient days or can a facility be profitable and still log lower patient days?'
+'Question 3 of 3: Is a long term care facility dependent on the total patient
+ census days in order to be profitable? In other words do the facilities that
+ are most profitable have the highest patient days or can a facility be
+ profitable and still log lower patient days?'
 ;
 
 title2 justify=left
-'Rationale: This should help identify whether the patient census days are a significant factor in determining profitability.'
+'Rationale: This should help identify whether the patient census days are a
+ significant factor in determining profitability.'
 ;
 
 footnote1 justify=left
@@ -251,11 +267,15 @@ footnote1 justify=left
 ;
 
 footnote2 justify=left
-'As the total patient census days decrease, the net income does not decrease as well. These two factors do not seem to be dependent of each other.'
+'As the total patient census days decrease, the net income does not decrease as
+ well. These two factors do not seem to be dependent of each other.'
 ;
 
 footnote3 justify=left
-'The net income is independent of the total patient census days. The most profitable days does not mean that it will have the most patient census days. Other factors determine how profitable the day will be, not the total patient census days.'
+'The net income is independent of the total patient census days. The most
+ profitable days does not mean that it will have the most patient census days. 
+ Other factors determine how profitable the day will be, not the total patient
+ census days.'
 ;
 
 
